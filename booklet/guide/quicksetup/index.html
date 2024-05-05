@@ -181,7 +181,7 @@ $ nano configuration.yaml
 <p>the configuration file requires the following settings:</p>
 <ul>
 <li><code>dns_domain</code> is the DNS name of your system as reacheable from the Internet. You will set this to, say, <code>owntracks.example</code>. Make sure you replace this value by the correct name for your installation.</li>
-<li><code>email</code> is the email address which we will use when enrolling a Let's Encrypt certificate on your behalf. We don't use this for anything else, and Let's Encrypt will send you mail only when your certificate is about to expire.</li>
+<li><code>email</code> is the email address which we will use when enrolling a Let's Encrypt certificate on your behalf. We don't use this for anything else, and Let's Encrypt will send you mail only when your certificate is about to expire. You can omit this setting in which case we will configure Quicksetup without TLS/SSL; we don't recommend this, but it might be good for simple testing.</li>
 <li>we strongly recommend you sign up for the free reverse geo service at <a href="../../other/opencage/">OpenCage</a>. It's free of charge, and they provide you with an API key you add to <code>opencage_apikey</code>. This is used in determining address information for locations (example below), and we configure your OwnTracks Android app to use it. It's so much nicer when you can see the addresses of locations you've visited in our maps.</li>
 <li>
 <p><code>friends</code> is an array of users who will be supported on your system. It will typically contain just yourself, but you might wish to have family members, relatives, or friends use OwnTracks on your system.</p>
