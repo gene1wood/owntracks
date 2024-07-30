@@ -258,36 +258,6 @@
 <li>Some Android devices always return 0 for <code>alt</code> or <code>vel</code></li>
 <li>Elements marked with <em>extended data</em> are only added if <code>extendedData=true</code> is configured</li>
 </ul>
-<h3 id="greenwich">Greenwich<a class="headerlink" href="#greenwich" title="Permanent link">#</a></h3>
-<p>The OwnTracks edition of the <a href="http://www.choral.it/greenwich&amp;menu2=795">Choral Greenwich</a> device reports the following additional elements in a <code>_type=location</code> message:</p>
-<pre><code class="language-json">{
-    &quot;_type&quot;: &quot;location&quot;,
-    elements
-}
-</code></pre>
-<ul>
-<li><code>alt</code> Altitude measured above sea level <em>(integer/meters/optional)</em></li>
-<li><code>batt</code> Device battery level <em>(integer/percent/optional)</em></li>
-<li><code>cog</code> Course over ground <em>(integer/degree/optional)</em></li>
-<li><code>dist</code> Distance travelled since the last location report <em>(integer/meters/optional)</em></li>
-<li><code>trip</code> Distance travelled since the last reboot <em>(integer/meters/optional)</em></li>
-<li><code>vel</code> velocity <em>(integer/kmh/optional)</em></li>
-<li><code>t</code> trigger for the location report <em>(string/optional)</em><ul>
-<li><code>f</code> First publish after reboot</li>
-<li><code>m</code> Manually requested locations (e.g. by publishing to <code>/cmd</code>)</li>
-<li><code>t</code> Time for location published because device is moving.</li>
-<li><code>T</code> Time for location published because of time passed while device is stationary (<code>maxInterval</code>)</li>
-<li><code>k</code> Transitioning from <em>move</em> to <em>stationary</em> (park)</li>
-<li><code>v</code> Transitioning from <em>stationary</em> to <em>move</em> (mo-v-e)</li>
-<li><code>l</code> Last known position when device lost GPS fix</li>
-<li><code>L</code> Last known position before gracefull shutdown</li>
-</ul>
-</li>
-</ul>
-<h4 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">#</a></h4>
-<ul>
-<li>The device can be configured to produce or not produce fields marked as <em>optional</em></li>
-</ul>
 <h3 id="queclink">Queclink<a class="headerlink" href="#queclink" title="Permanent link">#</a></h3>
 <p>OwnTracks works with a selection of trackers by <a href="http://www.queclink.com">Queclink</a>, for which the protocol conversion is done via <a href="https://github.com/jpmens/qtripp">qtripp</a>.
 Queclink devices report the following additional elements in a <code>_type=location</code> message:</p>
@@ -357,7 +327,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <li><code>counter</code> number of ignored positions <em>(integer/optional)</em></li>
 <li><code>ignored</code> indicates counter positions have been ignored <em>(boolean/optional)</em></li>
 </ul>
-<h4 id="notes_2">Notes<a class="headerlink" href="#notes_2" title="Permanent link">#</a></h4>
+<h4 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">#</a></h4>
 <ul>
 <li>The device can be configured to produce or not produce fields marked as <em>optional</em></li>
 </ul>
@@ -389,7 +359,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <li><code>minor</code>  Minor number of the BLE Beacon_(iOS/integer/optional)_</li>
 <li><code>rid</code>  region ID, created automatically, copied into the <code>location</code> payload <code>inrids</code> array (iOS/string)_</li>
 </ul>
-<h4 id="notes_3">Notes<a class="headerlink" href="#notes_3" title="Permanent link">#</a></h4>
+<h4 id="notes_2">Notes<a class="headerlink" href="#notes_2" title="Permanent link">#</a></h4>
 <ul>
 <li>In iOS version &gt;= 9.1.0 the last three elements (uuid, major, and minor) are used to configure Beacon waypoints instead of encoding these values into the <code>desc</code> element.</li>
 <li>If <code>lat</code>, <code>lon</code> and <code>rad</code> elements are present, transition messages are sent when entering and leaving the geographical region</li>
@@ -505,7 +475,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <li><code>ws</code> use MQTT over Websocket, default <code>false</code> <em>(iOS,Android/boolean)</em></li>
 <li><code>waypoints</code> Array of waypoint messages <em>(iOS,Android/array)</em></li>
 </ul>
-<h4 id="notes_4">Notes<a class="headerlink" href="#notes_4" title="Permanent link">#</a></h4>
+<h4 id="notes_3">Notes<a class="headerlink" href="#notes_3" title="Permanent link">#</a></h4>
 <ul>
 <li>When importing a configuration message, all contained values are imported for the currently active mode. If the message also contains a <code>mode</code> element, the mode is changed first and all remaining elements are imported for the new mode.</li>
 <li>In MQTT mode the server will consider the client as dead if it the keepalive interval plus 50% passed without receiving any MQTT packet from the client (e.g. after 90 sec if <code>keepalive</code> was 60). Afterwards, an <code>lwt</code> message will be send.</li>
@@ -533,7 +503,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 </ul>
 </li>
 </ul>
-<h4 id="notes_5">Notes<a class="headerlink" href="#notes_5" title="Permanent link">#</a></h4>
+<h4 id="notes_4">Notes<a class="headerlink" href="#notes_4" title="Permanent link">#</a></h4>
 <ul>
 <li>The theoretical relationship between RSSI and distance is <code>RSSI[dbm] = −(10n log10(d) − A)</code> where d is the distance and A is the offset which is the measured RSSI one meter point away from the beacon.</li>
 </ul>
@@ -541,6 +511,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <pre><code class="language-json">{&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;reportLocation&quot;}
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;reportSteps&quot;}
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;dump&quot;}
+{&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;status&quot;}
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;waypoints&quot;}
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;clearWaypoints&quot;}
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;setConfiguration&quot;, &quot;configuration&quot;:{&quot;_type&quot;:&quot;configuration&quot;,...}
@@ -554,6 +525,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <li><code>action</code> action to be performed by the device <em>(iOS,Android/string)</em><ul>
 <li><code>action</code> Inserts an additional <em>Featured Content</em> tab in the UI <em>(iOS)</em></li>
 <li><code>dump</code> Triggers the publish of a <code>configuration</code> message <em>(iOS)</em></li>
+<li><code>status</code> Triggers the publish of a <code>status</code> message to <code>../status</code> <em>(iOS)</em></li>
 <li><code>reportSteps</code> Triggers the report of a <code>steps</code> messages_(iOS)_<ul>
 <li><code>from</code> Timestamp <em>(iOS/epoch/optional)</em></li>
 <li><code>to</code> Timestamp <em>(iOS/epoch/optional)</em></li>
@@ -574,7 +546,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 </ul>
 </li>
 </ul>
-<h4 id="notes_6">Notes<a class="headerlink" href="#notes_6" title="Permanent link">#</a></h4>
+<h4 id="notes_5">Notes<a class="headerlink" href="#notes_5" title="Permanent link">#</a></h4>
 <ul>
 <li>If <code>url</code> for the <code>action</code> cmd message is specified, the URL is opened in a full screen web view within the app</li>
 <li>If the optional <code>extern</code> boolean is <code>true</code> a click on the notification will launch an external browser instead</li>
@@ -597,7 +569,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <li><code>from</code> Effective start of time period <em>(iOS/integer/epoch)</em></li>
 <li><code>to</code>  Effective end of time period <em>(iOS/integer/epoch)</em></li>
 </ul>
-<h4 id="notes_7">Notes<a class="headerlink" href="#notes_7" title="Permanent link">#</a></h4>
+<h4 id="notes_6">Notes<a class="headerlink" href="#notes_6" title="Permanent link">#</a></h4>
 <ul>
 <li><code>steps</code> is -1 if device does not support step counting or specified time period is invalid</li>
 </ul>
