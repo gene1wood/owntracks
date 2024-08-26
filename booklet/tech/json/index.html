@@ -412,6 +412,8 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <li><code>clientId</code> client id to use for MQTT connect. Defaults to "<em>user</em> <em>deviceId</em>" <em>(iOS,Android/string)</em></li>
 <li><code>clientpkcs</code> Name of the client pkcs12 file <em>(iOS/string)</em></li>
 <li><code>cmd</code> Respond to cmd messages <em>(iOS,Android/boolean)</em></li>
+<li><code>connectionTimeoutSeconds</code> (default 30) TCP timeout for establishing a connection to the MQTT / HTTP broker, <em>(Android/int)</em></li>
+<li><code>debugLog</code> (default false) whether or not debug logs should be shown in the log viewer / exporter activity <em>(Android/bool)</em></li>
 <li><code>deviceId</code> id of the device used for <code>pubTopicBase</code> and <code>clientId</code> construction. Defaults to the os name of the device  <em>(iOS,Android/string)</em></li>
 <li><code>downgrade</code> battery level below which to downgrade monitoring from move mode <em>(iOS/integer/percent/optional)</em></li>
 <li><code>encryptionKey</code> the secret key used for <a href="../../features/encrypt/">payload encryption</a> <em>(_iOS</em>,<em>Android/string)</em></li>
@@ -456,6 +458,7 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <li><code>osmCopyright</code> Attribution text shown with OSM map. Defaults to <code>(c) OpenStreetMap contributors</code>. <em>(iOS/string)</em></li>
 <li><code>passphrase</code> Passphrase of the client pkcs12 file <em>(iOS/string)</em></li>
 <li><code>password</code> Endpoint password <em>(iOS,Android/string)</em></li>
+<li><code>pegLocatorFastestIntervalToInterval</code> (default false) - if true, requests that that the device provide locations no faster than the specified interval. Location providers often use the requested interval as a "at least every" setting, and may return locations more frequencly. Some people wanted the behaviour where it also meant "no more frequently than", so this setting lets them specify this <em>(Android/bool)</em></li>
 <li><code>ping</code> Interval in which location messages of with <code>t</code>:<code>p</code> are reported <em>(Android/integer)</em></li>
 <li><code>port</code> MQTT endpoint port <em>(iOS,Android/integer)</em></li>
 <li><code>positions</code> Number of locations to keep and display <em>(iOS/integer)</em></li>
