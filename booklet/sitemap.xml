@@ -71,11 +71,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://owntracks.org/features/featured/</loc>
-         <lastmod>2024-09-03</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>http://owntracks.org/features/friends/</loc>
          <lastmod>2024-09-03</lastmod>
          <changefreq>daily</changefreq>

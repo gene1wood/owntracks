@@ -520,14 +520,9 @@ Queclink devices report the following additional elements in a <code>_type=locat
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;clearWaypoints&quot;}
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;setConfiguration&quot;, &quot;configuration&quot;:{&quot;_type&quot;:&quot;configuration&quot;,...}
 {&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;setWaypoints&quot;, &quot;waypoints&quot;:{&quot;_type&quot;:&quot;waypoints&quot;,&quot;waypoints&quot;:[...]}
-{&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;action&quot;, &quot;content&quot;:&quot;Backend maintenance scheduled for tonight\n\nhttp://support.owntracks.org&quot;}
-{&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;action&quot;, &quot;content&quot;:&quot;&lt;a href='http://support.owntracks.org'&gt;Backend Maintenance tonight&lt;/a&gt;&quot;}
-{&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;action&quot;, &quot;url&quot;:&quot;http://support.owntracks.org&quot;}
-{&quot;_type&quot;:&quot;cmd&quot;, &quot;action&quot;:&quot;action&quot;, &quot;notification&quot;:&quot;Warning! Battery low&quot;}
 </code></pre>
 <ul>
 <li><code>action</code> action to be performed by the device <em>(iOS,Android/string)</em><ul>
-<li><code>action</code> Inserts an additional <em>Featured Content</em> tab in the UI <em>(iOS)</em></li>
 <li><code>dump</code> Triggers the publish of a <code>configuration</code> message <em>(iOS)</em></li>
 <li><code>status</code> Triggers the publish of a <code>status</code> message to <code>../status</code> <em>(iOS)</em></li>
 <li><code>reportSteps</code> Triggers the report of a <code>steps</code> messages_(iOS)_<ul>
@@ -552,12 +547,6 @@ Queclink devices report the following additional elements in a <code>_type=locat
 </ul>
 <h4 id="notes_5">Notes<a class="headerlink" href="#notes_5" title="Permanent link">#</a></h4>
 <ul>
-<li>If <code>url</code> for the <code>action</code> cmd message is specified, the URL is opened in a full screen web view within the app</li>
-<li>If the optional <code>extern</code> boolean is <code>true</code> a click on the notification will launch an external browser instead</li>
-<li>If <code>url</code> is not specified the text of the <code>content</code> element is displayed. Links embedded in the text are operational.</li>
-<li>If the <code>content</code> consists of HTML, it is rendered</li>
-<li>The <em>Featured Content</em> tab can be removed with an <code>action</code> cmd message without <code>content</code> and without <code>url</code> element</li>
-<li>If the <code>action</code> cmd contains a <code>notification</code> element, the value of the element is shown in the app <em>(iOS)</em></li>
 <li>On iOS, the array of waypoints to the <code>setWaypoints</code> command allows updates / removal; the key of the waypoint is its name (<code>desc</code>). If you specify an invalid <code>lat</code> or <code>lon</code> (invalid means out of range number value e.g. <code>-1000000</code>, a string like <code>"foo"</code> will result in a <code>0</code> in app) the waypoint is deleted.</li>
 <li>On Android there's a primary key which isn't surfaced to the API, and <code>tst</code> is a uniquely-constrained value which effectively acts like a key.</li>
 </ul>
