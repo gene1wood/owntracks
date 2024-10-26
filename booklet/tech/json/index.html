@@ -258,6 +258,7 @@
 <li>The <code>acc</code>, <code>alt</code>, <code>cog</code>, <code>vac</code>, <code>vel</code> elements are only added if they are not zero</li>
 <li>Some Android devices always return 0 for <code>alt</code> or <code>vel</code></li>
 <li>Elements marked with <em>extended data</em> are only added if <code>extendedData=true</code> is configured</li>
+<li>Android devices using a VPN might not report either of SSID/BSSID which might be expected behaviour. <a href="https://github.com/owntracks/android/issues/1888">#1888</a></li>
 </ul>
 <h3 id="queclink">Queclink<a class="headerlink" href="#queclink" title="Permanent link">#</a></h3>
 <p>OwnTracks works with a selection of trackers by <a href="http://www.queclink.com">Queclink</a>, for which the protocol conversion is done via <a href="https://github.com/jpmens/qtripp">qtripp</a>.
