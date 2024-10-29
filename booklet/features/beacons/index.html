@@ -112,7 +112,7 @@ radius to zero (<code>0</code>) or a negative value (iOS only), and add the beac
 minor identifier numbers of the beacons as a decimal number ranging from 1 to 65535 if you desire finer control over which beacons OwnTracks will monitor.
 Setting major or minor number to zero (<code>0</code>) means no major or minor number is specified.
 Note that you should probably not use major or minor number <code>0</code>, because the meaning of 0 is "any".</p>
-<p>If the UUID is valid, iBeacon monitoring will start.</p>
+<p>If the UUID is valid, iBeacon monitoring will start. A valid UUID <em><strong>must</strong></em> be in the following format for Owntracks to recognize it as an iBeacon: <code>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</code>. This is the standard format for UUIDs represented in ASCII is a string punctuated by hyphens, for example 68753A44-4D6F-1226-9C60-0050E4C00067.</p>
 <p>Examples:</p>
 <pre><code>Name  myBeacons
 UUID  CA271EAE-5FA8-4E80-8F08-2A302A95A959
