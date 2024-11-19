@@ -352,8 +352,8 @@ Queclink devices report the following additional elements in a <code>_type=locat
 </code></pre>
 <ul>
 <li><code>desc</code> Name of the waypoint that is included in the sent transition message, copied into the <code>location</code> message <code>inregions</code> array when a current position is within a region. <em>(iOS,Android,string/required)</em></li>
-<li><code>lat</code> Latitude  <em>(iOS,Android/float/meters/optional)</em></li>
-<li><code>lon</code> Longitude <em>(iOS,Android/float/meters/optional)</em></li>
+<li><code>lat</code> Latitude  <em>(iOS,Android/float/degree/optional)</em></li>
+<li><code>lon</code> Longitude <em>(iOS,Android/float/degree/optional)</em></li>
 <li><code>rad</code> Radius around the latitude and longitude coordinates <em>(iOS,Android/integer/meters/optional)</em></li>
 <li><code>tst</code> Timestamp of creation of region, copied into the <code>wtst</code> element of the transition message <em>(iOS,Android/integer/epoch/required)</em></li>
 <li><code>uuid</code> UUID of the BLE Beacon <em>(iOS/string/optional)</em></li>
@@ -379,8 +379,8 @@ Queclink devices report the following additional elements in a <code>_type=locat
 </code></pre>
 <ul>
 <li><code>wtst</code> Timestamp of waypoint creation <em>(iOS,Android/integer/epoch/required)</em></li>
-<li><code>lat</code> Latitude at which the event occured <em>(iOS,Android/float/meters/optional)</em></li>
-<li><code>lon</code> Longitue at which the event occured <em>(iOS,Android/float/meters/optional)</em></li>
+<li><code>lat</code> Latitude at which the event occured <em>(iOS,Android/float/degree/optional)</em></li>
+<li><code>lon</code> Longitue at which the event occured <em>(iOS,Android/float/degree/optional)</em></li>
 <li><code>tst</code> Timestamp at which the event occured <em>(iOS,Android/integer/epoch/required)</em></li>
 <li><code>acc</code> Accuracy of the geographical coordinates <em>(iOS,Android/int/meters/required)</em></li>
 <li><code>tid</code> Tracker ID of the <em>(iOS/string/none/optional)</em> required in http mode.</li>
