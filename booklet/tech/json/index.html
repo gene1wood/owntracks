@@ -159,6 +159,11 @@
 <td style="text-align: center;">N</td>
 </tr>
 <tr>
+<td><code>status</code></td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+</tr>
+<tr>
 <td><code>steps</code></td>
 <td style="text-align: center;">Y</td>
 <td style="text-align: center;">N</td>
@@ -189,6 +194,7 @@
 <li><code>owntracks/user/device/step</code> to report step counter</li>
 <li><code>owntracks/user/device/beacon</code> for beacon ranging</li>
 <li><code>owntracks/user/device/dump</code> for config dumps</li>
+<li><code>owntracks/user/device/status</code> for status messages</li>
 <li><code>owntracks/user/device/waypoint</code> when a geofence is created on the device</li>
 <li><code>owntracks/user/device/waypoints</code> (plural) when exporting a list of configured waypoints from device to backend</li>
 </ul>
@@ -484,6 +490,38 @@ Queclink devices report the following additional elements in a <code>_type=locat
 <ul>
 <li>When importing a configuration message, all contained values are imported for the currently active mode. If the message also contains a <code>mode</code> element, the mode is changed first and all remaining elements are imported for the new mode.</li>
 <li>In MQTT mode the server will consider the client as dead if it the keepalive interval plus 50% passed without receiving any MQTT packet from the client (e.g. after 90 sec if <code>keepalive</code> was 60). Afterwards, an <code>lwt</code> message will be send.</li>
+</ul>
+<h2 id="_typestatus"><code>_type=status</code><a class="headerlink" href="#_typestatus" title="Permanent link">#</a></h2>
+<p>The device status contains information about the settings on the device which are not configured in the app.</p>
+<pre><code class="language-json">{
+    &quot;_type&quot;: &quot;status&quot;,
+    &quot;iOS&quot;: &lt;iOS specific elements&gt;,
+    &quot;android&quot;: &lt;android specific elements&gt;
+    &lt;other elements&gt;
+}
+</code></pre>
+<ul>
+<li>iOS specific elements\
+** <code>altimeterAuthorizationStatus</code> used for steps <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/coremotion/cmauthorizationstatus?language=objc">CMAuthorizationStatus</a>
+** <code>altimeterIsRelativeAltitudeAvailable</code> used for steps <em>(iOS/boolean)</em> as defined in <a href="https://developer.apple.com/documentation/coremotion/cmaltimeter/isrelativealtitudeavailable()?language=objc">isRelativeAltitudeAvailable</a>
+** <code>backgroundRefreshStatus</code> <em>(iOS/boolean)</em> as defined in <a href="https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus/uibackgroundrefreshstatusavailable/">UIBackgroundRefreshStatusAvailable</a>
+** <code>deviceIdentifierForVendor</code> used for default DeviceID <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor?language=objc">identifierForVendor</a>
+** <code>deviceModel</code> <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/uikit/uidevice/1620044-model?language=objc">model</a>
+** <code>deviceSystemName</code> <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/uikit/uidevice/1620054-systemname?language=objc">systemName</a>
+** <code>deviceSystemVersion</code> <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/uikit/uidevice/1620043-systemversion?language=objc">systemVersion</a>
+** <code>deviceUserInterfaceIdiom</code> <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/uikit/uidevice/1620037-userinterfaceidiom?language=objc">userInterfaceIdiom</a>
+** <code>locale</code> the current locale on the device <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/foundation/nslocale/1416263-localeidentifier?language=objc">localeIdentifier</a>
+** <code>localeUsesMetricSystem</code> <em>(iOS/boolean)</em> as defined in <a href="https://developer.apple.com/documentation/foundation/nslocale/1643225-usesmetricsystem?language=objc">usesMetricSystem</a>
+** <code>"locationManagerAuthorizationStatus"</code> used for all locations <em>(iOS/string)</em> as defined in <a href="https://developer.apple.com/documentation/corelocation/clauthorizationstatus?language=objc">"CLAuthorizationStatus"</a>
+** <code>version</code> version of the OwnTracks app <em>(iOS/string)</em></li>
+<li>android specific elements
+** <code>hib</code> <em>(Android/integer)</em>
+** <code>bo</code> <em>(Android/integer)</em>
+** <code>loc</code> <em>(Android/integer)</em>
+** <code>ps</code> <em>(Android/integer)</em>
+** <code>wifi</code> <em>(Android/integer)</em></li>
+<li>other elements
+** <code>_id</code> random identifier to be used by consumers to correlate &amp; distinguish send/return messages <em>(Android/string)</em></li>
 </ul>
 <h2 id="_typebeacon"><code>_type=beacon</code><a class="headerlink" href="#_typebeacon" title="Permanent link">#</a></h2>
 <p>These messages are published when beacon ranging (iOS only) is enabled. Be advised that beacon ranging publishes a lot of messages and has a strong impact on battery life.</p>
